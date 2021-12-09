@@ -1,0 +1,12 @@
+# VPC Creation
+aws ec2 create-vpc --cidr-block 10.0.0.0/16 
+(or)
+## Create a VPC
+AWS_VPC_ID=$(aws ec2 create-vpc \ --cidr-block 10.0.0.0/16 \ --query 'Vpc.{VpcId:VpcId}' \ --output text)
+
+## Enable DNS hostname for your VPC
+aws ec2 modify-vpc-attribute \ --vpc-id $AWS_VPC_ID \ --enable-dns-hostnames "{\"Value\":true}"
+
+## Create a public subnet
+AWS_SUBNET_PUBLIC_ID=$(aws ec2 create-subnet \ --vpc-id $AWS_VPC_ID --cidr-block 10.0.1.0/24 \--availability-zone ap-south-1a --query 'Subnet.{SubnetId:SubnetId}' \ --output text) 
+
