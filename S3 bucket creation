@@ -1,0 +1,5 @@
+# create S3 bucket using below CMD 
+aws s3 mb s3://Axiomiobucket --region us-west-2
+# s3 remove bucket
+aws s3 rb s3://Axiomiobucket
+aws s3 rb s3://Axiomiobucket --force
